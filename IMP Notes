@@ -7,3 +7,28 @@ Jab hum Jenkins me JOB create karke Run karte hai tab jenkins /var/lib/jenkins/w
 toh JOB fail hota hai...Tab hum "Allow Jenkins Docker access" commands use karte hai.
 then we can see the humari entire github repository is showing under /var/lib/jenkins/workspace/(JOB-name)
 and then we can mention the dockerfile path in the pipeline
+
+We can not execute any sudo commands in jenkins 
+Because
+Jenkins user is system-created
+No password is set
+So sudo will always fail
+
+
+Check if kubeconfig exists for Jenkins---Means jenkins is not having kubectl access
+ls -l /var/lib/jenkins/.kube/config
+
+Copy kubeconfig to Jenkins user
+From ubuntu user run below commands
+sudo mkdir -p /var/lib/jenkins/.kube
+sudo cp /home/ubuntu/.kube/config /var/lib/jenkins/.kube/config
+sudo chown -R jenkins:jenkins /var/lib/jenkins/.kube
+
+Best Practice (Production / Interview-Ready)
+
+Instead of copying kubeconfig: Use Jenkins Credentials + kubeconfig
+
+Jenkins → Manage Credentials
+Add Secret File
+Upload kubeconfig
+ID: kubeconfig
