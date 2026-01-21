@@ -62,7 +62,7 @@ The pipeline automates build, containerization, image publishing, and Kubernetes
 Before deploying this project, ensure the following tools and configurations are available on your system:
 
 1️⃣ Jenkins
-* Jenkins is used to implement the CI/CD pipeline for automated build and deployment.
+* Jenkins is required to implement the CI/CD pipeline for automated build and deployment.
  
 * Install Jenkins from: https://www.jenkins.io/doc/book/installing/linux/#debianubuntu
 
@@ -70,13 +70,19 @@ Before deploying this project, ensure the following tools and configurations are
 ```
 jenkins --version
 ```
+* Allow non-root Docker access
+```
+sudo usermod -aG docker $USER
+```
 
 2️⃣ Docker
+* Docker is required to build and run container images for the frontend and backend services.
+
+* Install Docker from: https://docs.docker.com/engine/install/ubuntu/
+
+* Verify installation:
 ```
-sudo apt update
-sudo apt install docker.io -y
-sudo systemctl start docker
-sudo systemctl enable docker
+docker --version
 ```
 * Kubernetes cluster (Minikube)
 
