@@ -51,9 +51,9 @@ stages {
                 export KUBECONFIG="/var/lib/jenkins/.kube/config"
 
                 # Apply manifests (skip validation to avoid cert issues)
-                kubectl apply -f k8s/backend-deployment.yaml --validate=false
-                kubectl apply -f k8s/frontend-deployment.yaml --validate=false
-                kubectl apply -f k8s/service.yaml --validate=false
+                kubectl apply -f K8S/backend-deployment.yaml --validate=false
+                kubectl apply -f K8S/frontend-deployment.yaml --validate=false
+                kubectl apply -f K8S/service.yaml --validate=false
 
                 # Update deployments with new images
                 kubectl set image deployment/devops-backend backend=${DOCKERHUB_REPO}/devops-backend:latest --record
