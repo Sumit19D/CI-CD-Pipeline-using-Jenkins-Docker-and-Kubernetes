@@ -113,6 +113,7 @@ kubectl version --client
 2️⃣ **Docker Image Build**
 
 * Separate Docker images are built for:
+
     * Frontend service
     * Backend service
 
@@ -126,6 +127,17 @@ kubectl version --client
 
 * Services enable inter-pod communication and external access
 
+## 🌐 Accessing the Application
+
+**Frontend Access**
+```
+minikube service frontend-service --url
+```
+
+**Backend (Internal Service)**
+```
+kubectl get svc backend-service
+```
 
 
 
