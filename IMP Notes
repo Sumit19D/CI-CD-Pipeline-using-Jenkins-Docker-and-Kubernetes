@@ -1,0 +1,9 @@
+Allow Jenkins Docker access
+sudo usermod -aG docker jenkins
+sudo systemctl restart jenkins
+
+why to allow jenkins Docekr access because 
+Jab hum Jenkins me JOB create karke Run karte hai tab jenkins /var/lib/jenkins/workspace/(JOB-name) iss folder me Dockerfile search karta hai  agar jenkins ko iss path me Dockerfile nahi mili
+toh JOB fail hota hai...Tab hum "Allow Jenkins Docker access" commands use karte hai.
+then we can see the humari entire github repository is showing under /var/lib/jenkins/workspace/(JOB-name)
+and then we can mention the dockerfile path in the pipeline
