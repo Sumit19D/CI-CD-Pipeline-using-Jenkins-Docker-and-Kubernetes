@@ -48,7 +48,7 @@ stages {
         steps {
             echo '🚀 Deploying application to Kubernetes...'
             sh """
-                export KUBECONFIG="/var/lib/jenkins/.kube/config"
+                withCredentials([file(credentialsId: '6918a57b-f784-4d9b-be1c-3e1ed67f17bb', variable: 'KUBECONFIG')])
 
                 # Apply manifests (skip validation to avoid cert issues)
                 kubectl apply -f K8S/backend-deployment.yaml --validate=false
