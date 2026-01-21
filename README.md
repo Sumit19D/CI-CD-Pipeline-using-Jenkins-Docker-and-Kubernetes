@@ -71,6 +71,12 @@ Before deploying this project, ensure the following tools and configurations are
 jenkins --version
 ```
 
+* Allow Jenkins Docker access
+```
+sudo usermod -aG docker jenkins
+sudo systemctl restart jenkins
+```
+
 2️⃣ **Docker**
 * Docker is required to build and run container images for the frontend and backend services.
 
