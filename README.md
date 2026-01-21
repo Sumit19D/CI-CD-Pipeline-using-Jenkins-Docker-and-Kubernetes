@@ -63,8 +63,11 @@ Before deploying this project, ensure the following tools and configurations are
 
 1️⃣ Jenkins
 * Jenkins is used to implement the CI/CD pipeline for automated build and deployment.
+ 
 * Install Jenkins from: https://www.jenkins.io/doc/book/installing/linux/#debianubuntu
+
 * Verify installation:
+
 ```jenkins --version```
 
 2️⃣ Docker
