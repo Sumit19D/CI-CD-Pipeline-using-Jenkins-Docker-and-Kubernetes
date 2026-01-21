@@ -14,29 +14,17 @@ stages {
         }
     }
 
-    stage('Build Backend Image') {
-        steps {
-            script {
-                echo '🐳 Building backend Docker image...'
-                sh """
-                    docker build -t $IMAGE_NAME:latest .
-                    docker tag $IMAGE_NAME:latest  ${DOCKERHUB_REPO}/devops-backend:latest
-                """
+    stage('Build Docker Images') {
+            steps {
+                script {
+                    echo '🐳 Building Docker images...'
+                    sh """
+                        docker build -t ${DOCKERHUB_REPO}/devops-backend:latest ./backend
+                        docker build -t ${DOCKERHUB_REPO}/devops-frontend:latest ./frontend
+                    """
+                }
             }
         }
-    }
-
-    stage('Build Frontend Image') {
-        steps {
-            script {
-                echo '🐳 Building frontend Docker image...'
-                sh """
-                    docker build -t $IMAGE_NAME:latest .
-                    docker tag $IMAGE_NAME:latest ${DOCKERHUB_REPO}/devops-frontend:latest
-                """
-            }
-        }
-    }
 
     stage('Push Images to DockerHub') {
         steps {
