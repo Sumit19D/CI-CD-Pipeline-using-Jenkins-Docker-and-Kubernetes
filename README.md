@@ -84,10 +84,26 @@ docker --version
 ```
 sudo usermod -aG docker $USER
 ```
-* Kubernetes cluster (Minikube)
+3️⃣ Kubernetes cluster (Minikube)
+* Minikube is required to run a local Kubernetes cluster for deployment and testing.
 
-* kubectl configured for cluster access
+* Install Minikube from: https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary+download
 
+* Start Minikube:
+```
+minikube start --driver=docker
+minikube tunnel --bind-address 0.0.0.0
+```
+
+4️⃣ kubectl configured for cluster access
+* kubectl is required to interact with the Kubernetes cluster.
+
+* Install kubectl from: https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
+
+* Verify installation:
+```
+kubectl version --client
+```
 
 
 
