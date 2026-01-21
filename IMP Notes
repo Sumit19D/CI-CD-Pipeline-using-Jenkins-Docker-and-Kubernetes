@@ -32,3 +32,7 @@ Jenkins → Manage Credentials
 Add Secret File
 Upload kubeconfig
 ID: kubeconfig
+
+to download kubeconfig file from Ec2 to laptop run below command in Powershell/Putty
+scp -i /path/to/your-ec2-key.pem ubuntu@<EC2_PUBLIC_IP>:/home/ubuntu/.kube/config ~/kubeconfig-ec2
+scp -i Downloads\netflix.pem ubuntu@54.163.218.239:/home/ubuntu/.kube/config ~/kubeconfig-ec2
