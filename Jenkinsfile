@@ -19,7 +19,7 @@ stages {
             script {
                 echo '🐳 Building backend Docker image...'
                 sh """
-                    docker build -t $IMAGE_NAME:latest  ./backend
+                    docker build -t $IMAGE_NAME:latest backend/
                     docker tag $IMAGE_NAME:latest  ${DOCKERHUB_REPO}/devops-backend:latest
                 """
             }
@@ -31,7 +31,7 @@ stages {
             script {
                 echo '🐳 Building frontend Docker image...'
                 sh """
-                    docker build -t $IMAGE_NAME:latest ./frontend
+                    docker build -t $IMAGE_NAME:latest frontend/
                     docker tag $IMAGE_NAME:latest ${DOCKERHUB_REPO}/devops-frontend:latest
                 """
             }
