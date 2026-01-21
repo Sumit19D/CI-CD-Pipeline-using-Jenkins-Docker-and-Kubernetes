@@ -67,8 +67,9 @@ Before deploying this project, ensure the following tools and configurations are
 * Install Jenkins from: https://www.jenkins.io/doc/book/installing/linux/#debianubuntu
 
 * Verify installation:
-
-```jenkins --version```
+```
+jenkins --version
+```
 
 2️⃣ Docker
 ```
