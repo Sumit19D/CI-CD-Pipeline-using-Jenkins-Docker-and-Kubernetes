@@ -48,7 +48,7 @@ stages {
         steps {
            script {
             echo '🚀 Deploying application to Kubernetes...'
-            withCredentials([file(credentialsId: '6918a57b-f784-4d9b-be1c-3e1ed67f17bb', variable: 'KUBECONFIG')])
+            withCredentials([file(credentialsId: '6918a57b-f784-4d9b-be1c-3e1ed67f17bb', variable: 'KUBECONFIG')]) {
             sh """
                 
                 # Apply manifests (skip validation to avoid cert issues)
@@ -67,7 +67,7 @@ stages {
         }
     }
 }
-        
+}
 post {
     success {
         echo "✅ Pipeline completed successfully! Images pushed and deployed with tag $IMAGE_NAME:latest"
