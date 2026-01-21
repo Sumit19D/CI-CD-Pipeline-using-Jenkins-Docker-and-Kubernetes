@@ -25,33 +25,22 @@ The pipeline automates build, containerization, image publishing, and Kubernetes
 * **OS:** Ubuntu
 
 ## 📂 Project Structure
+```
 .
-
 ├── frontend/
-
 |   ├── index.html
-
 │   ├── Dockerfile
-
 │   ├── deployment.yaml
-
 │   └── service.yaml
-
 ├── backend/
-
 |   ├── app.py
-
 |   ├── requirements.txt
-
 │   ├── Dockerfile
-
 │   ├── deployment.yaml
-
 │   └── service.yaml
-
 ├── Jenkinsfile
-
 └── README.md
+```
 
 ## 🏗️ Architecture Overview
 
@@ -65,8 +54,7 @@ The CI/CD workflow consists of the following stages:
 
 4️⃣ Docker image is pushed to Docker Hub
 
-5️⃣ Jenkins deploys the application to Kubernetes using 
-```kubectl```
+5️⃣ Jenkins deploys the application to Kubernetes using "kubectl"
 
 6️⃣ Kubernetes creates Pods and exposes the application via a Service
 
