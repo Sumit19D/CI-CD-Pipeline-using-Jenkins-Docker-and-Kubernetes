@@ -68,6 +68,7 @@ stages {
     }
 }
 }
+
 post {
     success {
         echo "✅ Pipeline completed successfully! Images pushed and deployed with tag $IMAGE_NAME:latest"
