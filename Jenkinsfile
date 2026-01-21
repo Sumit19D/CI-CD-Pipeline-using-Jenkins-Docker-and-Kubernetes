@@ -10,7 +10,7 @@ stages {
     stage('Checkout Code') {
         steps {
             echo '📦 Cloning repository...'
-            git branch: 'main', url: 'https://github.com/Shreeganesha-137/DevOps-CI-CD-Pipeline-using-Jenkins-Docker-and-Kubernetes.git'
+            git branch: 'main', url: 'https://github.com/Sumit19D/CI-CD-Pipeline-using-Jenkins-Docker-and-Kubernetes.git'
         }
     }
 
