@@ -82,7 +82,7 @@ docker --version
 ```
 * Allow non-root Docker access
 ```
-sudo usermod -aG docker $USER
+sudo usermod -aG docker $USER && newgrp docker
 ```
 3️⃣ **Kubernetes cluster (Minikube)**
 * Minikube is required to run a local Kubernetes cluster for deployment and testing.
