@@ -44,7 +44,7 @@ The pipeline automates build, containerization, image publishing, and Kubernetes
 
 ## 🏗️ Architecture Overview
 
-The CI/CD workflow consists of the following stages:
+### The CI/CD workflow consists of the following stages:
 
 1️⃣ Developer pushes code to GitHub
 
