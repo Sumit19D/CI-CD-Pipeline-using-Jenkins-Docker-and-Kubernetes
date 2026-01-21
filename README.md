@@ -95,7 +95,7 @@ minikube start --driver=docker
 minikube tunnel --bind-address 0.0.0.0
 ```
 
-4️⃣ **kubectl**
+4️⃣ **Kubectl**
 * kubectl is required to interact with the Kubernetes cluster.
 
 * Install kubectl from: https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
@@ -105,7 +105,26 @@ minikube tunnel --bind-address 0.0.0.0
 kubectl version --client
 ```
 
+## ⚙️ CI/CD Pipeline Stages
+1️⃣ **Source Code Checkout**
 
+* Jenkins pulls frontend and backend source code from GitHub
+
+2️⃣ **Docker Image Build**
+
+* Separate Docker images are built for:
+    * Frontend service
+    * Backend service
+
+3️⃣ **Docker Image Push**
+
+* Images are pushed to Docker Hub with proper tagging
+
+4️⃣ **Kubernetes Deployment**
+
+* Frontend and backend deployments are applied separately
+
+* Services enable inter-pod communication and external access
 
 
 
