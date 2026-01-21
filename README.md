@@ -139,7 +139,7 @@ minikube service frontend-service --url
 kubectl get svc backend-service
 ```
 
-🧹 Cleanup
+## 🧹 Cleanup
 
 To remove Kubernetes resources:
 
