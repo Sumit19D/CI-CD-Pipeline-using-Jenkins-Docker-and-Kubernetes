@@ -70,10 +70,6 @@ Before deploying this project, ensure the following tools and configurations are
 ```
 jenkins --version
 ```
-* Allow non-root Docker access
-```
-sudo usermod -aG docker $USER
-```
 
 2️⃣ Docker
 * Docker is required to build and run container images for the frontend and backend services.
@@ -83,6 +79,10 @@ sudo usermod -aG docker $USER
 * Verify installation:
 ```
 docker --version
+```
+* Allow non-root Docker access
+```
+sudo usermod -aG docker $USER
 ```
 * Kubernetes cluster (Minikube)
 
