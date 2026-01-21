@@ -36,3 +36,13 @@ ID: kubeconfig
 to download kubeconfig file from Ec2 to laptop run below command in Powershell/Putty
 scp -i /path/to/your-ec2-key.pem ubuntu@<EC2_PUBLIC_IP>:/home/ubuntu/.kube/config ~/kubeconfig-ec2
 scp -i Downloads\netflix.pem ubuntu@54.163.218.239:/home/ubuntu/.kube/config ~/kubeconfig-ec2
+
+
+Minikube + Jenkins permission issue
+Your kubeconfig (used in Jenkins) points to Minikube certificates
+👉 Those certs live in:
+/home/ubuntu/.minikube/
+👉 Jenkins runs as user: jenkins
+👉 jenkins does NOT have permission to read /home/ubuntu/.minikube
+
+So kubectl cannot read client.crt / client.key / ca.crt
