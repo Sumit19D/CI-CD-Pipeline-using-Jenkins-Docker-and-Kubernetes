@@ -61,7 +61,7 @@ The pipeline automates build, containerization, image publishing, and Kubernetes
 ## 📋 Prerequisites
 Before deploying this project, ensure the following tools and configurations are available on your system:
 
-1️⃣ Jenkins
+1️⃣ **Jenkins**
 * Jenkins is required to implement the CI/CD pipeline for automated build and deployment.
  
 * Install Jenkins from: https://www.jenkins.io/doc/book/installing/linux/#debianubuntu
@@ -71,7 +71,7 @@ Before deploying this project, ensure the following tools and configurations are
 jenkins --version
 ```
 
-2️⃣ Docker
+2️⃣ **Docker**
 * Docker is required to build and run container images for the frontend and backend services.
 
 * Install Docker from: https://docs.docker.com/engine/install/ubuntu/
@@ -84,7 +84,7 @@ docker --version
 ```
 sudo usermod -aG docker $USER
 ```
-3️⃣ Kubernetes cluster (Minikube)
+3️⃣ **Kubernetes cluster (Minikube)**
 * Minikube is required to run a local Kubernetes cluster for deployment and testing.
 
 * Install Minikube from: https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary+download
@@ -95,7 +95,7 @@ minikube start --driver=docker
 minikube tunnel --bind-address 0.0.0.0
 ```
 
-4️⃣ kubectl configured for cluster access
+4️⃣ **kubectl**
 * kubectl is required to interact with the Kubernetes cluster.
 
 * Install kubectl from: https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
