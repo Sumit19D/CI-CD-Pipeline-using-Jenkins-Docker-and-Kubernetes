@@ -19,8 +19,8 @@ stages {
                 script {
                     echo '🐳 Building Docker images...'
                     sh """
-                        docker build -t ${DOCKERHUB_REPO}/devops-backend:latest ./backend
-                        docker build -t ${DOCKERHUB_REPO}/devops-frontend:latest ./frontend
+                        docker build -t ${DOCKERHUB_REPO}/devops-backend:latest .
+                        docker build -t ${DOCKERHUB_REPO}/devops-frontend:latest .
                     """
                 }
             }
