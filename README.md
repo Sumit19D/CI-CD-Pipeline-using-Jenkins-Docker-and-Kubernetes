@@ -138,11 +138,13 @@ kubectl version --client
 **Frontend Access**
 ```
 minikube service frontend-service --url
+curl (URL)
 ```
 
 **Backend (Internal Service)**
 ```
-kubectl get svc backend-service
+minikube service frontend-service --url
+curl (URL)
 ```
 
 ## 🧹 Cleanup
