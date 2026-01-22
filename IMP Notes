@@ -61,3 +61,31 @@ How did you integrate Jenkins with Minikube?
 
 Say:
 “I used kubeconfig as a Jenkins secret file and ensured Jenkins had read access to Minikube certificates. Then applied manifests using kubectl in the pipeline.”
+
+
+#############
+you can run and open this app in a browser, but it depends on where Minikube is running.
+
+URL: http://192.168.49.2:30081
+192.168.49.2 → Minikube internal node IP
+30081 → NodePort
+This IP is inside the EC2 VM, not your laptop
+
+So:
+✅ Browser on EC2 → works
+❌ Browser on your laptop → won’t open directly
+
+If you open a browser on the EC2 machine itself (GUI / Firefox / curl):
+curl http://192.168.49.2:30081
+
+✅ How to access from your laptop
+Option 1: SSH Port Forwarding (BEST & SIMPLE)
+On your laptop:
+ssh -i key.pem -L 30081:192.168.49.2:30081 ubuntu@<EC2_PUBLIC_IP>
+ssh -i .\netflix.pem -L 30081:192.168.49.2:30081 ubuntu@3.88.68.59
+
+Now open browser on laptop:
+http://localhost:30081
+
+“Yes, the application is accessible via a NodePort service.
+Since Minikube runs inside an EC2 instance, I access it either via SSH port forwarding or by exposing the NodePort through the EC2 security group.”
