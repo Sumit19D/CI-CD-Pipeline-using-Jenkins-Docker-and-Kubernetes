@@ -1,4 +1,4 @@
-Allow Jenkins Docker access
+##### 🔐 Allow Jenkins Docker access #####
 sudo usermod -aG docker jenkins
 sudo systemctl restart jenkins
 
@@ -18,15 +18,15 @@ So sudo will always fail
 Check if kubeconfig exists for Jenkins---Means jenkins is not having kubectl access
 ls -l /var/lib/jenkins/.kube/config
 
-Copy kubeconfig to Jenkins user
-From ubuntu user run below commands
+## 🔐 Copy kubeconfig to Jenkins user ## 
+From ubuntu user run below commands-----------
 sudo mkdir -p /var/lib/jenkins/.kube
 sudo cp /home/ubuntu/.kube/config /var/lib/jenkins/.kube/config
 sudo chown -R jenkins:jenkins /var/lib/jenkins/.kube
 
 Best Practice (Production / Interview-Ready)
 
-Instead of copying kubeconfig: Use Jenkins Credentials + kubeconfig
+## 🔐 Instead of copying kubeconfig: Use Jenkins Credentials + kubeconfig ##
 
 Jenkins → Manage Credentials
 Add Secret File
@@ -38,7 +38,7 @@ scp -i /path/to/your-ec2-key.pem ubuntu@<EC2_PUBLIC_IP>:/home/ubuntu/.kube/confi
 scp -i Downloads\netflix.pem ubuntu@54.163.218.239:/home/ubuntu/.kube/config ~/kubeconfig-ec2
 
 
-Minikube + Jenkins permission issue
+#####🔐 Minikube + Jenkins permission issue #####
 Your kubeconfig (used in Jenkins) points to Minikube certificates
 👉 Those certs live in:
 /home/ubuntu/.minikube/
@@ -46,3 +46,12 @@ Your kubeconfig (used in Jenkins) points to Minikube certificates
 👉 jenkins does NOT have permission to read /home/ubuntu/.minikube
 
 So kubectl cannot read client.crt / client.key / ca.crt
+
+## 🔐 Copy Minikube certs to Jenkins home
+From ubuntu user run below commands-----------
+sudo mkdir -p /var/lib/jenkins/.minikube
+sudo cp -r /home/ubuntu/.minikube/* /var/lib/jenkins/.minikube/
+sudo chown -R jenkins:jenkins /var/lib/jenkins/.minikube
+
+## 🔐 Then update kubeconfig used by Jenkins:
+sudo sed -i 's|/home/ubuntu/.minikube|/var/lib/jenkins/.minikube|g' /var/lib/jenkins/.kube/config
