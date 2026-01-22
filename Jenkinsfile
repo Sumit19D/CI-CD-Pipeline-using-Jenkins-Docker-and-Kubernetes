@@ -31,7 +31,7 @@ environment {
             steps {
                 script {
                     echo '📤 Pushing Docker images to DockerHub...'
-                    withCredentials([usernamePassword(credentialsId: "3df4239f-7ded-44d7-96dd-e6b7765ed941", usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                    withCredentials([usernamePassword(credentialsId: "a0fc5943-0bd4-47cf-ad98-fa964aa7a683", usernameVariable: 'USER', passwordVariable: 'PASS')]) {
                         sh """
                             echo "$PASS" | docker login -u "$USER" --password-stdin
                             docker push ${DOCKERHUB_REPO}/devops-backend:latest
@@ -47,7 +47,7 @@ environment {
             steps {
                script {
                 echo '🚀 Deploying application to Kubernetes...'
-                withCredentials([file(credentialsId: '6918a57b-f784-4d9b-be1c-3e1ed67f17bb', variable: 'KUBECONFIG')]) {
+                
                 sh """
                     export KUBECONFIG=${KUBECONFIG_PATH}
                     # Apply manifests (skip validation to avoid cert issues)
@@ -67,7 +67,7 @@ environment {
         }
     }
 }
-}
+
 
     post {
         success {
