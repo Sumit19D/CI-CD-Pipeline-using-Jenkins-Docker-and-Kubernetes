@@ -95,3 +95,26 @@ http://localhost:30081
 
 “Yes, the application is accessible via a NodePort service.
 Since Minikube runs inside an EC2 instance, I access it either via SSH port forwarding or by exposing the NodePort through the EC2 security group.”
+
+
+##########  Backend → exposed via ClusterIP → internal-only
+So the backend cannot be accessed directly from outside unless you expose it.
+
+✅ How to Access Backend App (Correct Ways)
+🔹 OPTION 1️⃣: Access Backend Using kubectl port-forward (BEST for Testing)
+
+This is the recommended way without exposing backend publicly.
+kubectl port-forward svc/backend-service 5000:5000
+
+Now access backend using curl:
+curl http://localhost:5000
+
+🔹 OPTION 2️⃣: Access Backend from Inside the Cluster (Pod-to-Service)
+Exec into any pod (frontend or busybox):
+kubectl exec -it frontend-pod-name -- sh
+
+Then run
+curl http://backend-service:5000
+
+
+Ques : ANS : “The backend service is exposed as ClusterIP, so it’s accessible only within the Kubernetes cluster. For external access during testing, I use kubectl port-forward.”
