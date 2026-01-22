@@ -34,7 +34,6 @@ The pipeline automates build, containerization, image publishing, and Kubernetes
 │   └── service.yaml
 ├── backend/
 |   ├── app.py
-|   ├── requirements.txt
 │   ├── Dockerfile
 │   ├── deployment.yaml
 │   └── service.yaml
