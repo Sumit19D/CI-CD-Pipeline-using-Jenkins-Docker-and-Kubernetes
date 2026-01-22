@@ -4,6 +4,7 @@ pipeline {
 environment {
         IMAGE_NAME = "sumitdorugade/cicd"
         DOCKERHUB_REPO = "sumitdorugade"
+        KUBECONFIG_PATH = '/var/lib/jenkins/.kube/config'
     }
 
     stages {
@@ -48,7 +49,7 @@ environment {
                 echo '🚀 Deploying application to Kubernetes...'
                 withCredentials([file(credentialsId: '6918a57b-f784-4d9b-be1c-3e1ed67f17bb', variable: 'KUBECONFIG')]) {
                 sh """
-                
+                    export KUBECONFIG=${KUBECONFIG_PATH}
                     # Apply manifests (skip validation to avoid cert issues)
                     kubectl apply -f K8S/backend-deployment.yaml --validate=false
                     kubectl apply -f K8S/frontend-deployment.yaml --validate=false
