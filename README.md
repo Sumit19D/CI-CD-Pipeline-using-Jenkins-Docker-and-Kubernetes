@@ -142,8 +142,8 @@ curl (URL)
 
 **Backend (Internal Service)**
 ```
-minikube service frontend-service --url
-curl (URL)
+minikube ssh
+curl http://backend-service:5000
 ```
 
 ## 🧹 Cleanup
