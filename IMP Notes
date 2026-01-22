@@ -62,6 +62,12 @@ How did you integrate Jenkins with Minikube?
 Say:
 “I used kubeconfig as a Jenkins secret file and ensured Jenkins had read access to Minikube certificates. Then applied manifests using kubectl in the pipeline.”
 
+If interviewer asks:
+How did you access a Minikube service from your local machine?
+
+Say:
+“Since Minikube runs inside an EC2 instance and exposes services on a private network, 
+I used SSH local port forwarding to securely tunnel the NodePort to my local machine and accessed it via localhost.”
 
 #############
 you can run and open this app in a browser, but it depends on where Minikube is running.
