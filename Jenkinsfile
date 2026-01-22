@@ -63,7 +63,7 @@ environment {
 
     post {
         success {
-            echo "✅ Pipeline completed successfully! Images pushed and deployed with tag $IMAGE_NAME:latest"
+            echo "✅ Pipeline completed successfully.!!!"
         }
         failure {
             echo "❌ Pipeline failed. Check logs for details."
