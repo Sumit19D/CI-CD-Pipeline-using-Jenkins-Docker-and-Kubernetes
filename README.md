@@ -99,7 +99,6 @@ newgrp docker
 * Start Minikube:
 ```
 minikube start --driver=docker
-minikube tunnel --bind-address 0.0.0.0
 ```
 
 4️⃣ **Kubectl**
