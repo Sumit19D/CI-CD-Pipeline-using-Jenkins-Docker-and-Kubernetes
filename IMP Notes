@@ -55,3 +55,9 @@ sudo chown -R jenkins:jenkins /var/lib/jenkins/.minikube
 
 ## 🔐 Then update kubeconfig used by Jenkins:
 sudo sed -i 's|/home/ubuntu/.minikube|/var/lib/jenkins/.minikube|g' /var/lib/jenkins/.kube/config
+
+##### 🔐 If interviewer asks: ###
+How did you integrate Jenkins with Minikube?
+
+Say:
+“I used kubeconfig as a Jenkins secret file and ensured Jenkins had read access to Minikube certificates. Then applied manifests using kubectl in the pipeline.”
