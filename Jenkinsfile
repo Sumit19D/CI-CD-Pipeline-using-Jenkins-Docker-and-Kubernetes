@@ -2,7 +2,6 @@ pipeline {
     agent any
 
 environment {
-        IMAGE_NAME = "sumitdorugade/cicd"
         DOCKERHUB_REPO = "sumitdorugade"
         KUBECONFIG_PATH = '/var/lib/jenkins/.kube/config'
     }
@@ -11,7 +10,8 @@ environment {
         stage('Checkout Code') {
             steps {
                 echo '📦 Cloning repository...'
-                git branch: 'main', url: 'https://github.com/Sumit19D/CI-CD-Pipeline-using-Jenkins-Docker-and-Kubernetes.git'
+                git branch: 'main',
+                url: 'https://github.com/Sumit19D/CI-CD-Pipeline-using-Jenkins-Docker-and-Kubernetes.git'
             }
         }
 
@@ -20,8 +20,8 @@ environment {
                 script {
                     echo '🐳 Building Docker images...'
                     sh """
-                        docker build -t ${DOCKERHUB_REPO}/devops-backend:latest ./Backend
-                        docker build -t ${DOCKERHUB_REPO}/devops-frontend:latest ./Frontend
+                        docker build -t ${DOCKERHUB_REPO}/frontend:latest ./frontend
+                        docker build -t ${DOCKERHUB_REPO}/backend:latest ./backend
                     """
                 }
             }
@@ -34,8 +34,8 @@ environment {
                     withCredentials([usernamePassword(credentialsId: "a0fc5943-0bd4-47cf-ad98-fa964aa7a683", usernameVariable: 'USER', passwordVariable: 'PASS')]) {
                         sh """
                             echo "$PASS" | docker login -u "$USER" --password-stdin
-                            docker push ${DOCKERHUB_REPO}/devops-backend:latest
-                            docker push ${DOCKERHUB_REPO}/devops-frontend:latest
+                            docker push ${DOCKERHUB_REPO}/frontend:latest
+                            docker push ${DOCKERHUB_REPO}/backend:latest
                             docker logout
                         """
                     }
@@ -50,18 +50,10 @@ environment {
                 
                 sh """
                     export KUBECONFIG=${KUBECONFIG_PATH}
-                    # Apply manifests (skip validation to avoid cert issues)
-                    kubectl apply -f K8S/backend-deployment.yaml --validate=false
-                    kubectl apply -f K8S/frontend-deployment.yaml --validate=false
-                    kubectl apply -f K8S/service.yaml --validate=false
-
-                    # Update deployments with new images
-                    kubectl set image deployment/devops-backend backend=${DOCKERHUB_REPO}/devops-backend:latest --record
-                    kubectl set image deployment/devops-frontend frontend=${DOCKERHUB_REPO}/devops-frontend:latest --record
-
-                    # Wait for rollout
-                    kubectl rollout status deployment/devops-backend
-                    kubectl rollout status deployment/devops-frontend
+                    kubectl apply -f frontend/deployment.yaml --validate=false
+                    kubectl apply -f frontend/service.yaml --validate=false
+                    kubectl apply -f backend/deployment.yaml --validate=false
+                    kubectl apply -f backend/service.yaml --validate=false
                 """
             }
         }
