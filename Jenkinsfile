@@ -2,8 +2,8 @@ pipeline {
     agent any
 
 environment {
+        DOCKERHUB_CREDENTIALS = 'dockerhub-creds'
         DOCKERHUB_REPO = "sumitdorugade"
-        KUBECONFIG_PATH = '/var/lib/jenkins/.kube/config'
     }
 
     stages {
@@ -31,7 +31,7 @@ environment {
             steps {
                 script {
                     echo '📤 Pushing Docker images to DockerHub...'
-                    withCredentials([usernamePassword(credentialsId: "a0fc5943-0bd4-47cf-ad98-fa964aa7a683", usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                    withCredentials([usernamePassword(credentialsId: "${DOCKERHUB_CREDENTIALS}", usernameVariable: 'USER', passwordVariable: 'PASS')]) {
                         sh """
                             echo "$PASS" | docker login -u "$USER" --password-stdin
                             docker push ${DOCKERHUB_REPO}/frontend:latest
@@ -49,7 +49,6 @@ environment {
                 echo '🚀 Deploying application to Kubernetes...'
                 
                 sh """
-                    export KUBECONFIG=${KUBECONFIG_PATH}
                     kubectl apply -f frontend/deployment.yaml --validate=false
                     kubectl apply -f frontend/service.yaml --validate=false
                     kubectl apply -f backend/deployment.yaml --validate=false
